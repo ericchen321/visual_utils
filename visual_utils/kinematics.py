@@ -3,6 +3,7 @@
 
 import numpy as np
 from typing import Tuple
+from scipy.spatial.transform import Rotation as R
 
 
 def compute_spring_xform(

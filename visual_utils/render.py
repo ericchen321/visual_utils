@@ -10,7 +10,7 @@ from visual_utils.kinematics import compute_spring_xform
 def render_usd(
     xpos_particles: np.ndarray,
     springs: np.ndarray,
-    frame_dt: float,
+    times: np.ndarray,
     usd_path: str) -> None:
     r"""
     Render the rollout of a mass-spring system, and save to
@@ -21,21 +21,28 @@ def render_usd(
             (num_frames, num_particles, 3)
         springs: Indices of the particles connected by springs
             (num_springs, 2)
-        frame_dt: Time interval between frames
+        times: Simulation time, in seconds, of each frame
+            (num_frames, )
         usd_path: Path to save the USD file
     """
+    # check input
+    assert xpos_particles.ndim == 3
+    num_frames = xpos_particles.shape[0]
+    assert num_frames > 1, "Need at least 2 frames to render"
+    assert times.shape[0] == num_frames
+
     # build renderer
+    frame_dt = times[1] - times[0]
     renderer_usd = UsdRenderer(
         usd_path,
         up_axis="Y",
         fps=int(1.0 / frame_dt),
         scaling=1.0)
     
-    # render. We render per frame at the 1st substep
-    num_frames = xpos_particles.shape[0]
+    # render    
     for frame_idx in range(num_frames):
         xpos_frame = xpos_particles[frame_idx]
-        sim_time = frame_idx * frame_dt
+        sim_time = times[frame_idx]
         render_usd_per_frame(
             renderer_usd,
             xpos_frame,
