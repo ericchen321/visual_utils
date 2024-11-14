@@ -31,9 +31,9 @@ def define_rectangular_sheet(
 
     Return:
         A tuple of
-        - spring definitions in terms of particle indices. Ordered
-            by horizontal springs -> vertical springs -> diagonal
-            springs if diagonal=True
+        - edge list, i.e. spring definitions in terms of particle
+            indices. Ordered by horizontal springs -> vertical
+            springs -> diagonal springs if diagonal=True
             (num_springs, 2)
         - Rest configuration of particles in object's local frame
             (num_particles, 3)

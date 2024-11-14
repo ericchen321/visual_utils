@@ -19,8 +19,8 @@ def render_usd(
     Parameters:
         xpos_particles: Particle positions across frames
             (num_frames, num_particles, 3)
-        springs: Indices of the particles connected by springs
-            (num_springs, 2)
+        springs: Indices of the particles connected by springs,
+            i.e. edge list (num_springs, 2)
         times: Simulation time, in seconds, of each frame
             (num_frames, )
         usd_path: Path to save the USD file
