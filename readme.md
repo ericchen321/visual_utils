@@ -1,6 +1,6 @@
 # Visualization utilities for WARP projects
 
-This repo contains utility functions for your WARP projects, including one that renders a mass-spring system to a USD file.
+This repo contains visualization utilities for WARP projects pertaining to CS 535P: Digital Humans offered at UBC.
 
 ## Installation
 1. Install Git LFS.
